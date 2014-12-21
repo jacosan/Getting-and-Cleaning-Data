@@ -1,0 +1,32 @@
+---
+title: "Getting and Cleanind Data Project"
+author: "Jacobo Sánchez"
+date: "21 Dec 2014"
+output: html_document
+---
+
+#### Original data source and description
+
+[https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip]
+[http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones]
+
+#### run_analysis.R
+
+The run_analyisis file performs the following steps for creating a single, tidy file:
+
+1. Loads X_text.txt dataset and assing to each of its columns the name given by features.txt
+2. Loads y_text.txt and activity_label.txt and create a data frame (activity_table) matching the y_text V1 column index with the appropiate activity label. 
+3. Loads subject_text.txt and rename its only column to "Subject_ID"
+4. Bind these three different data frames in a single one (test_data) which has 2947 observations by 563 variables.
+5. Repeat these last 4 steps with the Train datasets obtaining a sigle data frame (train_data) with 7352 observations and 563 variables.
+6. Merge train_data and test_data into a sigle data frame (raw_data)
+7. Reads features and extract measurements on mean and standart deviation to create mean_sd_Index factor (66 levels)
+8. Create clean_data dataframe by applying mean_sd_Index to raw_data dataframe.
+9. Rename some columns of clean_data
+10. Create tidy_ds dataframe with averages of measurements by using aggregate function.
+11. Write run_analysis.txt file
+
+#### Tidy_ds dataframe
+
+Tidy_ds has 180 observations - 6 activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) for each one of the 30 volunteers participating in the experiment - and 66 variables. These variables are the average of the observations of activities in the original datasets. 
+Tydy_ds is ordered by activities, starting at laying, and then individuals (Subject_ID)
